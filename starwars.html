@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="sv">
+	<head>
+	<title></title>
+	<meta charset="utf-8">	
+	</head>
+
+	<body>
+	<div>
+	<p><h3>Enter Star Wars character name below:</h3></p>
+	</div>
+
+	<div>
+	<input id="inp" type="text">
+	</div>
+
+	<div>
+	<textarea id="outp" rows=5 readonly></textarea>
+	</div>
+
+	<div>
+	<button id="butt" >Get info</button>
+	</div>
+
+
+	<script>
+
+	//const inpu = document.querySelector("#inp")	
+
+	//const outpu = document.querySelector("#outp")
+
+	//const butto = document.querySelector("#butt")
+
+	butt.addEventListener("click", getApi)
+
+	function getApi(){ 
+
+	let Uri = "https://www.swapi.tech/api/people/?name="
+	Uri += "" + inp.value
+	//console.log(Uri)
+
+	fetch(Uri)
+	.then(res => res.json()) 
+	.then(data => 
+	{ 
+	let value1 = data.result[0].properties.height
+	let value2 = data.result[0].properties.mass
+	let value3 = data.result[0].properties.gender
+	let value4 = data.result[0].properties.hair_color
+
+	let s = `Height: ${value1} \nMass: ${value2} \nGender: ${value3} \nHaircolor: ${value4}`
+
+	//console.log(s)
+	outp.innerHTML = ""
+	outp.innerHTML = s
+
+	}) 
+	.catch(err => console.log(err)) 
+	} 
+
+
+	</script>
+  
+	</body>
+</html>
